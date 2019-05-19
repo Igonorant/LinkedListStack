@@ -12,6 +12,7 @@ void Stack::Push(int val)
 		}
 		pLast->pNext = new Element(val);
 	}
+	nElements++;
 }
 
 int Stack::Pop()
@@ -35,30 +36,19 @@ int Stack::Pop()
 			delete pBegin;
 			pBegin = nullptr;
 		}
+		nElements--;
 		return data;
 	}
 }
 
 int Stack::Size() const
 {
-	if (Empty()) {
-		return 0;
-	}
-	else {
-		int counter = 1;
-		Element* pLast = pBegin;
-		while (pLast->pNext != nullptr) {
-			counter++;
-			pLast = pLast->pNext;
-
-		}
-		return counter;
-	}
+	return nElements;
 }
 
 bool Stack::Empty() const
 {
-	if (pBegin == nullptr) {
+	if (nElements == 0) {
 		return true;
 	}
 	return false;
